@@ -25,6 +25,19 @@ body {
 
  }
 
+ #results-container {
+   margin: 32px 0;
+   display:flex;
+   flex-wrap: wrap;
+   gap: 8px;
+ }
+
+ .forecast-card {
+   border: 1px solid grey;
+   border-radius: 8px;
+   width: 220px;
+   padding: 8px;
+ }
  
  
 
