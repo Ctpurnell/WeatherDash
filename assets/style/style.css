@@ -39,6 +39,12 @@ body {
    padding: 8px;
  }
  
+ .forecast-card-two {
+   border: 1px solid grey;
+   border-radius: 8px;
+   width: 220px;
+   padding: 8px;
+ }
  
 
     

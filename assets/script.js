@@ -8,13 +8,17 @@ var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=
 var searchBtn = document.querySelector("#searchBtn");
 var formContain = document.querySelector("form-container");
 var searchInputEl = document.querySelector("#search");
-var resultsContainer = document.getElementById("results-container")
+var resultsContainer = document.getElementById("results-container");
+var resultsContainerTwo = document.getElementById("date-container");
+
+var currentDate = dayjs().format(" MMM DD, YYYY");
+
 searchBtn.addEventListener("click", function (event) {
   event.preventDefault();
   var userInput = event.target.previousElementSibling.value;
   var formContain = event.target.parentElement.getAttribute("id");
   localStorage.setItem(formContain, userInput);
-  console.log(searchInputEl.value);
+  console.log(searchInputEl.value, ",", currentDate);
 
   fetchWeatherByCityName(searchInputEl.value);
 });
@@ -46,8 +50,22 @@ function fetchForecast(lat, lon) {
     .then(function (data) {
       console.log(data);
       var resultArray = data.list;
+      console.log(data.list[1]);
+      
+      displayTime(resultArray)
       displayWeatherCards(resultArray)
     });
+}
+
+
+function displayTime(dayTime) {
+  let htmlContainerTwo = '';
+  dayTime.forEach(function (forecast){
+    htmlContainerTwo += `<div class="forecast-card-two">
+      <div>Date & Time:${forecast.dt_txt}</div>
+    </div>`
+  })
+  resultsContainerTwo.innerHTML = htmlContainerTwo
 }
 
 function displayWeatherCards(fiveDayForecast) {
@@ -62,3 +80,4 @@ function displayWeatherCards(fiveDayForecast) {
   })
   resultsContainer.innerHTML = htmlContainer
 }
+
