@@ -19,12 +19,12 @@ searchBtn.addEventListener("click", function (event) {
   fetchWeatherByCityName(searchInputEl.value);
 });
 
-//fetch()//
-function fetchWeatherByCityName(cityName) {
+function fetchWeatherByCityName(cityName, stateCode) {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=27ed5413de75e6e3eea3ddb37981af05`
+    `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateCode}&appid=27ed5413de75e6e3eea3ddb37981af05&units=imperial`
   )
     .then(function (res) {
+      console.log(res);
       return res.json();
     })
     .then(function (data) {
@@ -38,7 +38,7 @@ function fetchWeatherByCityName(cityName) {
 function fetchForecast(lat, lon) {
   console.log(lat, lon)
   fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=27ed5413de75e6e3eea3ddb37981af05`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=27ed5413de75e6e3eea3ddb37981af05&units=imperial`
   )
     .then(function (response) {
       return response.json();
@@ -54,10 +54,10 @@ function displayWeatherCards(fiveDayForecast) {
   let htmlContainer = '';
   fiveDayForecast.forEach(function (forecast){
     htmlContainer += `<div class="forecast-card">
-      <div>${forecast.dt_txt}</div>
-      <div>${forecast.main.temp}</div>
-      <div>humidity</div>
-      <div>${forecast.speed}</div>
+      <div>Date & Time:${forecast.dt_txt}</div>
+      <div>Temp:${forecast.main.feels_like} dgs</div>
+      <div>Humidity:${forecast.main.humidity}%</div>
+      <div>Wind Speed:${forecast.wind.speed} Mph</div>
     </div>`
   })
   resultsContainer.innerHTML = htmlContainer
