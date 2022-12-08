@@ -1,10 +1,10 @@
 var APIkey = "27ed5413de75e6e3eea3ddb37981af05";
-var city;
-var state;
-var country;
+var cityName;
+var stateCode;
+var countryCode;
 var lat;
 var lon;
-var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIkey}`;
+// var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIkey}`;
 var searchBtn = document.querySelector("#searchBtn");
 var formContain = document.querySelector("form-container");
 var searchInputEl = document.querySelector("#search");
@@ -25,7 +25,7 @@ searchBtn.addEventListener("click", function (event) {
 
 function fetchWeatherByCityName(cityName, stateCode) {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateCode}&appid=27ed5413de75e6e3eea3ddb37981af05&units=imperial`
+    `https://api.openweathermap.org/data/2.5/weather?q=${searchInputEl.value}&appid=27ed5413de75e6e3eea3ddb37981af05&units=imperial`
   )
     .then(function (res) {
       console.log(res);
@@ -50,7 +50,7 @@ function fetchForecast(lat, lon) {
     .then(function (data) {
       console.log(data);
       var resultArray = data.list;
-      console.log(data.list[1]);
+      
       
       displayTime(resultArray)
       displayWeatherCards(resultArray)
