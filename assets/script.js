@@ -7,7 +7,7 @@ var lon;
 // var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIkey}`;
 var searchBtn = document.querySelector("#searchBtn");
 var formContain = document.querySelector("form-container");
-var searchInputEl = document.querySelector("#search");
+var searchInputEl = document.querySelector("input");
 var resultsContainer = document.getElementById("results-container");
 var resultsContainerTwo = document.getElementById("date-container");
 
