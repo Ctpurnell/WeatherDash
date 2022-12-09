@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+
+    <title>Weather Dashboard</title>
+  </head>
+
+  <body>
+    <div class="d-flex justify-content-center text-bg-primary p-3">
+      <h1>Weather Dashboard</h1>
+    </div>
+
+    <h2>Search for a City:</h2>
+    <div class="form-container">
+      <form id="form" class="form">
+        <input id="search" />
+        <button id="searchBtn" class="results">Search</button>
+      </form>
+    </div>
+
+    <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h5 class="card-city">Chicago, Illinois</h5>
+        <h6 class="card-degrees mb-2 text-muted">45°f</h6>
+        <p class="card-wind">Wind Speed</p>
+        <p class="card-humidity">Humimdity</p>
+      </div>
+    </div>
+    <h2 class="d-flex justify-content-center text-bg-success p-3">
+      Five Day Forecast:
+    </h2>
+    <section class="five-day container-fluid" id="forecast-cards">
+      <div class="row">
+        <div class="forecast-card" style="width: 18rem">
+          <div class="card-body">
+            <h4 class="date-day">Tuesday, Dec 6</h4>
+            <h5 class="card-degrees mb-2 text-muted">42°f</h5>
+            <p class="card-wind">Wind Speed</p>
+            <p class="card-humidity">Humimdity</p>
+          </div>
+        </div>
+        <div class="forecast-card" style="width: 18rem">
+          <div class="card-body">
+            <h4 class="date-day">Wednesday, Dec 7</h4>
+            <h5 class="card-degrees mb-2 text-muted">40°f</h5>
+            <p class="card-wind">Wind Speed</p>
+            <p class="card-humidity">Humimdity</p>
+          </div>
+        </div>
+        <div class="forecast-card" style="width: 18rem">
+          <div class="card-body">
+            <h4 class="date-day">Thursday, Dec 8</h4>
+            <h5 class="card-degrees mb-2 text-muted">38°f</h5>
+            <p class="card-wind">Wind Speed</p>
+            <p class="card-humidity">Humimdity</p>
+          </div>
+        </div>
+        <div class="forecast-card" style="width: 18rem">
+          <div class="card-body">
+            <h4 class="date-day">Friday, Dec 9</h4>
+            <h5 class="card-degrees mb-2 text-muted">52°f</h5>
+            <p class="card-wind">Wind Speed</p>
+            <p class="card-humidity">Humimdity</p>
+          </div>
+        </div>
+        <div class="forecast-card" style="width: 18rem">
+          <div class="card-body">
+            <h4 class="date-day">Saturday, Dec 10</h4>
+            <h5 class="card-degrees mb-2 text-muted">50°f</h5>
+            <p class="card-wind">Wind Speed</p>
+            <p class="card-humidity">Humimdity</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="./script/script.js"></script>
+  </body>
+</html>
