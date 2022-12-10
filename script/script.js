@@ -8,6 +8,7 @@ var searchBtn = document.querySelector("#searchBtn");
 var searchInputEl = document.querySelector("input");
 var resultsContainer = document.getElementById("results-container");
 var resultsContainerTwo = document.getElementById("date-container");
+var dateDay = document.querySelectorAll("#date-day");
 
 var currentDate = dayjs().format(" MMM DD, YYYY");
 
@@ -49,6 +50,26 @@ function fetchForecast(lat, lon) {
     })
     .then(function (data) {
       console.log(data);
+      var resultArray = data.list;
+      console.log("Date and Time: ", data.list[2].dt_txt);
+      console.log("Temp: ", data.list[2].main.temp, "°");
+      console.log("Humidity: ", data.list[2].main.humidity, "%");
+      console.log("Wind Speed: ", data.list[2].wind.speed, "mph");
+      
+      for (var i = 0; i , resultArray.lenght; i++) {
+        if (resultArray[i].dt_txt.split(' ')[1] === '12:00:00') {
+          console.log(resultArray[i]);
+          var temp = data.list[2].main.temp;
+          console.log(temp);
+          var humidity = data.list[i].main.humidity;
+          var wind = data.list[i].main.humidity;
+          var date = data.list[i].dt_txt.split(' ')[0];
+        
+
+        }
+      }
+
+
       // var resultArray = data.list;
 
       // displayTime(resultArray);
