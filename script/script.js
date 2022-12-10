@@ -20,9 +20,6 @@ searchBtn.addEventListener("click", function (event) {
   console.log(searchInputEl.value, ",", currentDate);
 
   fetchWeatherByCityName(searchInputEl.value);
-
-  
-  
 });
 
 function fetchWeatherByCityName(searchInputEl) {
@@ -55,20 +52,17 @@ function fetchForecast(lat, lon) {
       console.log("Temp: ", data.list[2].main.temp, "°");
       console.log("Humidity: ", data.list[2].main.humidity, "%");
       console.log("Wind Speed: ", data.list[2].wind.speed, "mph");
-      
-      for (var i = 0; i , resultArray.lenght; i++) {
-        if (resultArray[i].dt_txt.split(' ')[1] === '12:00:00') {
+
+      for (var i = 0; i, resultArray.lenght; i++) {
+        if (resultArray[i].dt_txt.split(" ")[1] === "12:00:00") {
           console.log(resultArray[i]);
           var temp = data.list[2].main.temp;
           console.log(temp);
           var humidity = data.list[i].main.humidity;
           var wind = data.list[i].main.humidity;
-          var date = data.list[i].dt_txt.split(' ')[0];
-        
-
+          var date = data.list[i].dt_txt.split(" ")[0];
         }
       }
-
 
       // var resultArray = data.list;
 
@@ -76,7 +70,3 @@ function fetchForecast(lat, lon) {
       // displayWeatherCards(resultArray);
     });
 }
-
-
-
-
