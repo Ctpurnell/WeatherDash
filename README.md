@@ -11,7 +11,7 @@
 
 ## Installation
 
-Navagate to [https://ctpurnell.github.io/WeatherDash/] and typr the City you are searching for.
+Navagate to [https://ctpurnell.github.io/WeatherDash/] and type the City you are searching for.
 
 ## Usage
 

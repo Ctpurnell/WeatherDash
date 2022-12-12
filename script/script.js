@@ -7,9 +7,9 @@ var searchInputEl = document.querySelector("input");
 var resultsContainer = document.getElementById("results-container");
 var resultsContainerTwo = document.getElementById("date-container");
 var dateDay = document.querySelectorAll("#date-day");
-
+// display date from day.js.......................................................
 var currentDate = dayjs().format(" MMM DD, YYYY");
-
+// Search button..................................................................
 searchBtn.addEventListener("click", function (event) {
   event.preventDefault();
   var userInput = event.target.previousElementSibling.value;
@@ -19,7 +19,7 @@ searchBtn.addEventListener("click", function (event) {
 
   fetchWeatherByCityName(searchInputEl.value);
 });
-
+// function for retreiving data at API.............................................
 function fetchWeatherByCityName(searchInputEl) {
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${searchInputEl}&appid=27ed5413de75e6e3eea3ddb37981af05&units=imperial`
@@ -38,6 +38,7 @@ function fetchWeatherByCityName(searchInputEl) {
       console.log(err);
     });
 }
+// New function to reteive five day foredcast data..................................
 function fetchForecast(lat, lon) {
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=27ed5413de75e6e3eea3ddb37981af05&units=imperial`
