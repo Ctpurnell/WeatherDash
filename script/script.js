@@ -17,12 +17,16 @@ searchBtn.addEventListener("click", function (event) {
   localStorage.setItem(formContain, userInput);
   console.log(searchInputEl.value, "", currentDate);
   var cityToday = (searchInputEl.value, "", currentDate);
-  
-  
+
   console.log(cityToday);
 
   fetchWeatherByCityName(searchInputEl.value);
 });
+
+var cityHistory = [];
+if (localStorage.getItem("history")) {
+  cityHistory = JSON.parse(localStorage.getItem("history"));
+}
 // function for retreiving data at API.............................................
 function fetchWeatherByCityName(searchInputEl) {
   fetch(
@@ -32,16 +36,22 @@ function fetchWeatherByCityName(searchInputEl) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data); 
+      console.log(data);
       console.log("Humidity: " + data.main.humidity);
       fetchForecast(data.coord.lat, data.coord.lon);
-//displying the current conditions.................................................  
+      //displying the current conditions.................................................
       var curTemp = data.main.temp;
-      document.querySelector("#current-temp").innerHTML = ("Temp: " + curTemp + "°f");
+      document.querySelector("#current-temp").innerHTML =
+        "Temp: " + curTemp + "°f";
       var curWind = data.wind.speed;
-      document.querySelector("#current-wind").innerHTML = ("Wind: " + curWind + "mph");
+      document.querySelector("#current-wind").innerHTML =
+        "Wind: " + curWind + "mph";
       var curHumid = data.main.humidity;
-      document.querySelector("#current-humidity").innerHTML = ("Humidity: " + curHumid + "%");
+      document.querySelector("#current-humidity").innerHTML =
+        "Humidity: " + curHumid + "%";
+      cityHistory.push(data.name);
+      localStorage.setItem("history", JSON.stringify(cityHistory));
+      renderCities();
     })
     .catch(function (err) {
       console.log(err);
@@ -69,24 +79,34 @@ function fetchForecast(lat, lon) {
       console.log("Humidity: ", weatherHumidity, "%");
       console.log("Wind Speed: ", windSpeed, "mph");
 
-      // for (var i = 0; i, resultArray.lenght; i++) {
-      //   if (resultArray[i].dt_txt.split(" ")[1] === "12:00:00") {
-      //     console.log(resultArray[i]);
-      //     var temp = data.list[2].main.temp;
-      //     console.log(temp);
-      //     var weatherCity = data.list.name
-      //     console.log(weatherCity);
-      //     var humidity = data.list[i].main.humidity;
-      //     var wind = data.list[i].main.humidity;
-      //     var date = data.list[i].dt_txt.split(" ")[0];
-      //     document.getElementById("weather-city").innerHTML = weatherCity;
+      var newCleanArr = data.list.filter((index) =>
+        index.dt_txt.includes("12:00:00")
+      );
 
-      //   }
-      // }
+      var allDisplays = document.getElementsByClassName("date-day");
+      console.log(allDisplays);
 
-      // var resultArray = data.list;
+      for (i = 0; i < newCleanArr.length; i++) {
+        allDisplays[i].textContent = newCleanArr[i].dt_txt.split(" ")[0];
 
-      // displayTime(resultArray);
-      // displayWeatherCards(resultArray);
+        document.getElementById("card-degrees" + i).textContent =
+          "Temp: " + newCleanArr[i].main.temp;
+        document.getElementById("card-wind" + i).textContent =
+          "wind spd: " + newCleanArr[i].wind.speed + "mph";
+        document.getElementById("card-humidity" + i).textContent =
+          "humidity: " + newCleanArr[i].main.humidity + "%";
+      }
     });
 }
+
+function renderCities() {
+  var historyArea = document.getElementById("historyArea");
+  historyArea.innerHTML = "";
+  for (i = 0; i < cityHistory.length; i++) {
+    var newButton = document.createElement("button");
+    newButton.textContent = cityHistory[i];
+    historyArea.appendChild(newButton);
+  }
+}
+
+renderCities();
