@@ -31,6 +31,10 @@ function fetchWeatherByCityName(searchInputEl) {
     })
     .then(function (data) {
       console.log(data);
+      console.log("Ctiy: " + data.name);
+      console.log("Temp : " + data.main.temp);
+      console.log("Wind: " + data.wind.speed);
+      console.log("Humidity: " + data.main.humidity);
       fetchForecast(data.coord.lat, data.coord.lon);
     })
     .catch(function (err) {
@@ -38,7 +42,6 @@ function fetchWeatherByCityName(searchInputEl) {
     });
 }
 function fetchForecast(lat, lon) {
-  console.log(lat, lon);
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=27ed5413de75e6e3eea3ddb37981af05&units=imperial`
   )
@@ -47,22 +50,37 @@ function fetchForecast(lat, lon) {
     })
     .then(function (data) {
       console.log(data);
-      var resultArray = data.list;
-      console.log("Date and Time: ", data.list[2].dt_txt);
-      console.log("Temp: ", data.list[2].main.temp, "°");
-      console.log("Humidity: ", data.list[2].main.humidity, "%");
-      console.log("Wind Speed: ", data.list[2].wind.speed, "mph");
 
-      for (var i = 0; i, resultArray.lenght; i++) {
-        if (resultArray[i].dt_txt.split(" ")[1] === "12:00:00") {
-          console.log(resultArray[i]);
-          var temp = data.list[2].main.temp;
-          console.log(temp);
-          var humidity = data.list[i].main.humidity;
-          var wind = data.list[i].main.humidity;
-          var date = data.list[i].dt_txt.split(" ")[0];
-        }
-      }
+      var resultArray = data.list;
+      var weatherTemp = data.list[2].main.temp;
+      var dateTime = data.list[2].dt_txt;
+      var weatherHumidity = data.list[2].main.humidity;
+      var windSpeed = data.list[2].wind.speed;
+      console.log(resultArray);
+      console.log("Date and Time: ", dateTime);
+      console.log("Temp: ", weatherTemp, "°");
+      console.log("Humidity: ", weatherHumidity, "%");
+      console.log("Wind Speed: ", windSpeed, "mph");
+
+
+
+
+      // for (var i = 0; i, resultArray.lenght; i++) {
+      //   if (resultArray[i].dt_txt.split(" ")[1] === "12:00:00") {
+      //     console.log(resultArray[i]);
+      //     var temp = data.list[2].main.temp;
+      //     console.log(temp);
+      //     var weatherCity = data.list.name
+      //     console.log(weatherCity);
+      //     var humidity = data.list[i].main.humidity;
+      //     var wind = data.list[i].main.humidity;
+      //     var date = data.list[i].dt_txt.split(" ")[0];
+      //     document.getElementById("weather-city").innerHTML = weatherCity;
+
+
+          
+      //   }
+      // }
 
       // var resultArray = data.list;
 
