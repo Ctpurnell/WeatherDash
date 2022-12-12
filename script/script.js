@@ -16,6 +16,10 @@ searchBtn.addEventListener("click", function (event) {
   var formContain = event.target.parentElement.getAttribute("id");
   localStorage.setItem(formContain, userInput);
   console.log(searchInputEl.value, "", currentDate);
+  var cityToday = (searchInputEl.value, "", currentDate);
+  
+  
+  console.log(cityToday);
 
   fetchWeatherByCityName(searchInputEl.value);
 });
@@ -28,11 +32,16 @@ function fetchWeatherByCityName(searchInputEl) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-      console.log("Temp : " + data.main.temp);
-      console.log("Wind: " + data.wind.speed);
+      console.log(data); 
       console.log("Humidity: " + data.main.humidity);
       fetchForecast(data.coord.lat, data.coord.lon);
+//displying the current conditions.................................................  
+      var curTemp = data.main.temp;
+      document.querySelector("#current-temp").innerHTML = ("Temp: " + curTemp + "°f");
+      var curWind = data.wind.speed;
+      document.querySelector("#current-wind").innerHTML = ("Wind: " + curWind + "mph");
+      var curHumid = data.main.humidity;
+      document.querySelector("#current-humidity").innerHTML = ("Humidity: " + curHumid + "%");
     })
     .catch(function (err) {
       console.log(err);
