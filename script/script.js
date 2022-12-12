@@ -1,7 +1,5 @@
 var APIkey = "27ed5413de75e6e3eea3ddb37981af05";
 var cityName;
-var stateCode;
-var countryCode;
 var lat;
 var lon;
 var searchBtn = document.querySelector("#searchBtn");
@@ -17,7 +15,7 @@ searchBtn.addEventListener("click", function (event) {
   var userInput = event.target.previousElementSibling.value;
   var formContain = event.target.parentElement.getAttribute("id");
   localStorage.setItem(formContain, userInput);
-  console.log(searchInputEl.value, ",", currentDate);
+  console.log(searchInputEl.value, "", currentDate);
 
   fetchWeatherByCityName(searchInputEl.value);
 });
@@ -31,7 +29,6 @@ function fetchWeatherByCityName(searchInputEl) {
     })
     .then(function (data) {
       console.log(data);
-      console.log("Ctiy: " + data.name);
       console.log("Temp : " + data.main.temp);
       console.log("Wind: " + data.wind.speed);
       console.log("Humidity: " + data.main.humidity);
@@ -62,9 +59,6 @@ function fetchForecast(lat, lon) {
       console.log("Humidity: ", weatherHumidity, "%");
       console.log("Wind Speed: ", windSpeed, "mph");
 
-
-
-
       // for (var i = 0; i, resultArray.lenght; i++) {
       //   if (resultArray[i].dt_txt.split(" ")[1] === "12:00:00") {
       //     console.log(resultArray[i]);
@@ -77,8 +71,6 @@ function fetchForecast(lat, lon) {
       //     var date = data.list[i].dt_txt.split(" ")[0];
       //     document.getElementById("weather-city").innerHTML = weatherCity;
 
-
-          
       //   }
       // }
 
