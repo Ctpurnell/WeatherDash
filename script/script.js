@@ -90,7 +90,7 @@ function fetchForecast(lat, lon) {
         allDisplays[i].textContent = newCleanArr[i].dt_txt.split(" ")[0];
 
         document.getElementById("card-degrees" + i).textContent =
-          "Temp: " + newCleanArr[i].main.temp;
+          "Temp: " + newCleanArr[i].main.temp + "°f";
         document.getElementById("card-wind" + i).textContent =
           "wind spd: " + newCleanArr[i].wind.speed + "mph";
         document.getElementById("card-humidity" + i).textContent =
